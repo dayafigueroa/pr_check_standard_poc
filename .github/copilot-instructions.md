@@ -1,3 +1,3 @@
-When performing a code review, if the pr title contains feat, fix, refactor or test evidence for
-unit and e2e test evidence is required by actioning on the PR with a message reminding the contributor
-to add these
+When performing a code review, if the pr title contains a conventional commit type of
+feat, fix, refactor or test then issue a comment reminding the contributor to provide test evidence for
+unit and e2e test standards. list these standards pre-pended with check boxes 
