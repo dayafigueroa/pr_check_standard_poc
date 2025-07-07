@@ -4,4 +4,7 @@ describe('Dummy test', () => {
       expect(true).toBeTruthy();
       expect('hello').toContain('he');  
     });
+    it('should pass 2', () => {
+      expect(true).toBeTruthy();
+    });
   });
