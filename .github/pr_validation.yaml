@@ -1,0 +1,36 @@
+name: PR Validation
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files_yaml: |
+            docs:
+              - 'docs/**'
+              - '*.md'
+            src:
+              - 'app/src/**'
+            tests:
+              - 'app/__tests__/**'
+      
+      - name: Validate File Changes
+        run: |
+          echo "Changed files in docs: ${{ steps.changed-files.outputs.docs }}"
+          echo "Changed files in src: ${{ steps.changed-files.outputs.src }}"
+          echo "Changed files in tests: ${{ steps.changed-files.outputs.tests }}"
+
+          if [[ -z "${{ steps.changed-files.outputs.docs }}" && -z "${{ steps.changed-files.outputs.src }}" && -z "${{ steps.changed-files.outputs.tests }}" ]]; then
+            echo "No relevant changes detected. Skipping validation."
+            exit 0
+          fi
+
+          # Add your validation logic here
+          echo "Validation passed for changed files."
+          
